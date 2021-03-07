@@ -1,7 +1,7 @@
 import fs from "fs";
 import path from "path";
 import _ from "lodash";
-import hljs from "highlight.js/lib/highlight"; // TODO: Do not register languages
+import hljs from "highlight.js/lib/core"; // TODO: Do not register languages
 import CircularJSON from "circular-json";
 
 const NOTICE_COMMENT = "// GENERATED CODE - DO NOT MODIFY BY HAND\n\n";
@@ -90,7 +90,7 @@ export function commonModes() {
     common += `final ${k}=${generateMode(v, false)};`;
   });
   fs.writeFileSync(
-    `../highlight/lib/src/common_modes.dart`,
+    `../highlighter/lib/src/common_modes.dart`,
     common.replace(/\$/g, "\\$")
   );
 }
@@ -197,7 +197,7 @@ export function allModes() {
       const data = generateMode(nonCircularObj, true);
 
       fs.writeFileSync(
-        `../highlight/lib/languages/${originalLang}.dart`,
+        `../highlighter/lib/languages/${originalLang}.dart`,
         `${NOTICE_COMMENT}import '../src/mode.dart'; import '../src/common_modes.dart'; final ${lang}=Mode(${commonStr} ${data.slice(
           5
         )};`
@@ -222,7 +222,7 @@ export function allModes() {
   all += community + builtin;
   all += "final allLanguages = {...builtinLanguages,...communityLanguages};";
   fs.writeFileSync(
-    `../highlight/lib/languages/all.dart`,
+    `../highlighter/lib/languages/all.dart`,
     all.replace(/\$/g, "\\$")
   );
 }

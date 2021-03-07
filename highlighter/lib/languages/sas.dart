@@ -5,6 +5,7 @@ import '../src/common_modes.dart';
 
 final sas = Mode(
     refs: {},
+    name: "SAS",
     aliases: ["sas", "SAS"],
     case_insensitive: true,
     keywords: {
@@ -16,8 +17,8 @@ final sas = Mode(
     contains: [
       Mode(
           className: "keyword",
-          begin: "^\\s*(proc [\\w\\d_]+|data|run|quit)[\\s\\;]"),
-      Mode(className: "variable", begin: "\\&[a-zA-Z_\\&][a-zA-Z0-9_]*\\.?"),
+          begin: "^\\s*(proc [\\w\\d_]+|data|run|quit)[\\s;]"),
+      Mode(className: "variable", begin: "&[a-zA-Z_&][a-zA-Z0-9_]*\\.?"),
       Mode(
           className: "emphasis",
           begin: "^\\s*datalines|cards.*;",
@@ -37,7 +38,7 @@ final sas = Mode(
         PHRASAL_WORDS_MODE,
         Mode(
             className: "doctag",
-            begin: "(?:TODO|FIXME|NOTE|BUG|XXX):",
+            begin: "(?:TODO|FIXME|NOTE|BUG|OPTIMIZE|HACK|XXX):",
             relevance: 0)
       ]),
       C_BLOCK_COMMENT_MODE

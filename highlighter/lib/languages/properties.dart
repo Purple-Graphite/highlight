@@ -12,8 +12,9 @@ final properties = Mode(
               className: "string",
               end: "\$",
               relevance: 0,
-              contains: [Mode(begin: "\\\\\\n")])),
+              contains: [Mode(begin: "\\\\\\\\"), Mode(begin: "\\\\\\n")])),
     },
+    name: ".properties",
     case_insensitive: true,
     illegal: "\\S",
     contains: [
@@ -21,13 +22,20 @@ final properties = Mode(
         PHRASAL_WORDS_MODE,
         Mode(
             className: "doctag",
-            begin: "(?:TODO|FIXME|NOTE|BUG|XXX):",
+            begin: "(?:TODO|FIXME|NOTE|BUG|OPTIMIZE|HACK|XXX):",
             relevance: 0)
       ]),
       Mode(
-          begin:
-              "([^\\\\\\W:= \\t\\f\\n]|\\\\.)+([ \\t\\f]*[:=][ \\t\\f]*|[ \\t\\f]+)",
           returnBegin: true,
+          variants: [
+            Mode(
+                begin:
+                    "([^\\\\\\W:= \\t\\f\\n]|\\\\.)+[ \\t\\f]*[:=][ \\t\\f]*",
+                relevance: 1),
+            Mode(
+                begin: "([^\\\\\\W:= \\t\\f\\n]|\\\\.)+[ \\t\\f]+",
+                relevance: 0)
+          ],
           contains: [
             Mode(
                 className: "attr",

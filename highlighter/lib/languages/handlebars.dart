@@ -5,30 +5,234 @@ import '../src/common_modes.dart';
 
 final handlebars = Mode(
     refs: {
-      '~contains~7~contains~0': Mode(
-          begin: "\".*?\"|'.*?'|\\[.*?\\]|\\w+",
+      '~contains~5~contains~0': Mode(
+          begin:
+              "(\\.|\\.\\/|\\/)?(\"\"|\"[^\"]+\"|''|'[^']+'|\\[\\]|\\[[^\\]]+\\]|[^\\s!\"#%&'()*+,.\\/;<=>@\\[\\\\\\]^`{|}\\x7e]+)((\\.|\\/)(\"\"|\"[^\"]+\"|''|'[^']+'|\\[\\]|\\[[^\\]]+\\]|[^\\s!\"#%&'()*+,.\\/;<=>@\\[\\\\\\]^`{|}~]+))*",
+          lexemes: "[\\w.\\/]+",
           keywords: {
-            "builtin-name":
-                "each in with if else unless bindattr action collection debugger log outlet template unbound view yield lookup"
+            "builtin-name": [
+              "action",
+              "bindattr",
+              "collection",
+              "component",
+              "concat",
+              "debugger",
+              "each",
+              "each-in",
+              "get",
+              "hash",
+              "if",
+              "in",
+              "input",
+              "link-to",
+              "loc",
+              "log",
+              "lookup",
+              "mut",
+              "outlet",
+              "partial",
+              "query-params",
+              "render",
+              "template",
+              "textarea",
+              "unbound",
+              "unless",
+              "view",
+              "with",
+              "yield"
+            ]
           },
-          starts: Mode(ref: '~contains~4~contains~0~starts'),
-          relevance: 0),
-      '~contains~4~contains~0~starts': Mode(
-          endsWithParent: true,
-          relevance: 0,
-          contains: [
-            Mode(begin: "\".*?\"|'.*?'|\\[.*?\\]|\\w+", relevance: 0)
-          ]),
-      '~contains~4~contains~0': Mode(
-          begin: "\".*?\"|'.*?'|\\[.*?\\]|\\w+",
-          keywords: {
-            "builtin-name":
-                "each in with if else unless bindattr action collection debugger log outlet template unbound view yield lookup"
-          },
-          starts: Mode(ref: '~contains~4~contains~0~starts'),
           className: "name"),
+      '~contains~4~contains~0~starts~contains~4~starts~starts~contains~4':
+          Mode(begin: "\\(", end: "\\)", contains: [
+        Mode(
+            begin:
+                "(\\.|\\.\\/|\\/)?(\"\"|\"[^\"]+\"|''|'[^']+'|\\[\\]|\\[[^\\]]+\\]|[^\\s!\"#%&'()*+,.\\/;<=>@\\[\\\\\\]^`{|}\\x7e]+)((\\.|\\/)(\"\"|\"[^\"]+\"|''|'[^']+'|\\[\\]|\\[[^\\]]+\\]|[^\\s!\"#%&'()*+,.\\/;<=>@\\[\\\\\\]^`{|}~]+))*",
+            lexemes: "[\\w.\\/]+",
+            className: "name",
+            keywords: {
+              "builtin-name": [
+                "action",
+                "bindattr",
+                "collection",
+                "component",
+                "concat",
+                "debugger",
+                "each",
+                "each-in",
+                "get",
+                "hash",
+                "if",
+                "in",
+                "input",
+                "link-to",
+                "loc",
+                "log",
+                "lookup",
+                "mut",
+                "outlet",
+                "partial",
+                "query-params",
+                "render",
+                "template",
+                "textarea",
+                "unbound",
+                "unless",
+                "view",
+                "with",
+                "yield"
+              ]
+            },
+            starts: Mode(contains: [
+              NUMBER_MODE,
+              QUOTE_STRING_MODE,
+              APOS_STRING_MODE,
+              Mode(ref: '~contains~4~contains~0~starts~contains~3'),
+              Mode(ref: '~contains~4~contains~0~starts~contains~4'),
+              Mode(
+                  ref:
+                      '~contains~4~contains~0~starts~contains~4~starts~starts~contains~3'),
+              Mode(
+                  ref:
+                      '~contains~4~contains~0~starts~contains~4~starts~starts~contains~4')
+            ], returnEnd: true, end: "\\)"))
+      ]),
+      '~contains~4~contains~0~starts~contains~4~starts~starts~contains~3': Mode(
+          begin:
+              "(\\.|\\.\\/|\\/)?(\"\"|\"[^\"]+\"|''|'[^']+'|\\[\\]|\\[[^\\]]+\\]|[^\\s!\"#%&'()*+,.\\/;<=>@\\[\\\\\\]^`{|}\\x7e]+)((\\.|\\/)(\"\"|\"[^\"]+\"|''|'[^']+'|\\[\\]|\\[[^\\]]+\\]|[^\\s!\"#%&'()*+,.\\/;<=>@\\[\\\\\\]^`{|}~]+))*",
+          lexemes: "[\\w.\\/]+",
+          keywords: {
+            "literal": ["true", "false", "undefined", "null"]
+          }),
+      '~contains~4~contains~0~starts~contains~4': Mode(
+          className: "attr",
+          begin:
+              "(\\[\\]|\\[[^\\]]+\\]|[^\\s!\"#%&'()*+,.\\/;<=>@\\[\\\\\\]^`{|}\\x7e]+)(?==)",
+          relevance: 0,
+          starts: Mode(
+              begin: "=",
+              end: "=",
+              starts: Mode(contains: [
+                NUMBER_MODE,
+                QUOTE_STRING_MODE,
+                APOS_STRING_MODE,
+                Mode(
+                    ref:
+                        '~contains~4~contains~0~starts~contains~4~starts~starts~contains~3'),
+                Mode(
+                    ref:
+                        '~contains~4~contains~0~starts~contains~4~starts~starts~contains~4')
+              ]))),
+      '~contains~4~contains~0~starts~contains~3': Mode(
+          begin: "as\\s+\\|",
+          keywords: {"keyword": "as"},
+          end: "\\|",
+          contains: [Mode(begin: "\\w+")]),
+      '~contains~4~contains~0': Mode(
+          begin:
+              "(\\.|\\.\\/|\\/)?(\"\"|\"[^\"]+\"|''|'[^']+'|\\[\\]|\\[[^\\]]+\\]|[^\\s!\"#%&'()*+,.\\/;<=>@\\[\\\\\\]^`{|}\\x7e]+)((\\.|\\/)(\"\"|\"[^\"]+\"|''|'[^']+'|\\[\\]|\\[[^\\]]+\\]|[^\\s!\"#%&'()*+,.\\/;<=>@\\[\\\\\\]^`{|}~]+))*",
+          lexemes: "[\\w.\\/]+",
+          keywords: {
+            "builtin-name": [
+              "action",
+              "bindattr",
+              "collection",
+              "component",
+              "concat",
+              "debugger",
+              "each",
+              "each-in",
+              "get",
+              "hash",
+              "if",
+              "in",
+              "input",
+              "link-to",
+              "loc",
+              "log",
+              "lookup",
+              "mut",
+              "outlet",
+              "partial",
+              "query-params",
+              "render",
+              "template",
+              "textarea",
+              "unbound",
+              "unless",
+              "view",
+              "with",
+              "yield"
+            ]
+          },
+          className: "name",
+          starts: Mode(contains: [
+            NUMBER_MODE,
+            QUOTE_STRING_MODE,
+            APOS_STRING_MODE,
+            Mode(ref: '~contains~4~contains~0~starts~contains~3'),
+            Mode(ref: '~contains~4~contains~0~starts~contains~4'),
+            Mode(
+                ref:
+                    '~contains~4~contains~0~starts~contains~4~starts~starts~contains~3'),
+            Mode(
+                ref:
+                    '~contains~4~contains~0~starts~contains~4~starts~starts~contains~4')
+          ], returnEnd: true, end: "\\}\\}")),
+      '~contains~10~contains~0': Mode(
+          begin:
+              "(\\.|\\.\\/|\\/)?(\"\"|\"[^\"]+\"|''|'[^']+'|\\[\\]|\\[[^\\]]+\\]|[^\\s!\"#%&'()*+,.\\/;<=>@\\[\\\\\\]^`{|}\\x7e]+)((\\.|\\/)(\"\"|\"[^\"]+\"|''|'[^']+'|\\[\\]|\\[[^\\]]+\\]|[^\\s!\"#%&'()*+,.\\/;<=>@\\[\\\\\\]^`{|}~]+))*",
+          lexemes: "[\\w.\\/]+",
+          className: "name",
+          keywords: {
+            "builtin-name": [
+              "action",
+              "bindattr",
+              "collection",
+              "component",
+              "concat",
+              "debugger",
+              "each",
+              "each-in",
+              "get",
+              "hash",
+              "if",
+              "in",
+              "input",
+              "link-to",
+              "loc",
+              "log",
+              "lookup",
+              "mut",
+              "outlet",
+              "partial",
+              "query-params",
+              "render",
+              "template",
+              "textarea",
+              "unbound",
+              "unless",
+              "view",
+              "with",
+              "yield"
+            ]
+          },
+          starts: Mode(contains: [
+            NUMBER_MODE,
+            QUOTE_STRING_MODE,
+            APOS_STRING_MODE,
+            Mode(ref: '~contains~4~contains~0~starts~contains~3'),
+            Mode(ref: '~contains~4~contains~0~starts~contains~4'),
+            Mode(
+                ref:
+                    '~contains~4~contains~0~starts~contains~4~starts~starts~contains~3'),
+            Mode(
+                ref:
+                    '~contains~4~contains~0~starts~contains~4~starts~starts~contains~4')
+          ], returnEnd: true, end: "\\}\\}")),
     },
-    aliases: ["hbs", "html.hbs", "html.handlebars"],
+    name: "Handlebars",
+    aliases: ["hbs", "html.hbs", "html.handlebars", "htmlbars"],
     case_insensitive: true,
     subLanguage: ["xml"],
     contains: [
@@ -42,14 +246,14 @@ final handlebars = Mode(
             PHRASAL_WORDS_MODE,
             Mode(
                 className: "doctag",
-                begin: "(?:TODO|FIXME|NOTE|BUG|XXX):",
+                begin: "(?:TODO|FIXME|NOTE|BUG|OPTIMIZE|HACK|XXX):",
                 relevance: 0)
           ]),
       Mode(className: "comment", begin: "\\{\\{!", end: "\\}\\}", contains: [
         PHRASAL_WORDS_MODE,
         Mode(
             className: "doctag",
-            begin: "(?:TODO|FIXME|NOTE|BUG|XXX):",
+            begin: "(?:TODO|FIXME|NOTE|BUG|OPTIMIZE|HACK|XXX):",
             relevance: 0)
       ]),
       Mode(
@@ -63,32 +267,35 @@ final handlebars = Mode(
           className: "template-tag",
           begin: "\\{\\{\\{\\{\\/",
           end: "\\}\\}\\}\\}",
+          contains: [Mode(ref: '~contains~5~contains~0')]),
+      Mode(
+          className: "template-tag",
+          begin: "\\{\\{#",
+          end: "\\}\\}",
           contains: [Mode(ref: '~contains~4~contains~0')]),
       Mode(
           className: "template-tag",
-          begin: "\\{\\{[#\\/]",
+          begin: "\\{\\{(?=else\\}\\})",
           end: "\\}\\}",
-          contains: [Mode(ref: '~contains~4~contains~0')]),
+          keywords: "else"),
+      Mode(
+          className: "template-tag",
+          begin: "\\{\\{(?=else if)",
+          end: "\\}\\}",
+          keywords: "else if"),
+      Mode(
+          className: "template-tag",
+          begin: "\\{\\{\\/",
+          end: "\\}\\}",
+          contains: [Mode(ref: '~contains~5~contains~0')]),
       Mode(
           className: "template-variable",
           begin: "\\{\\{\\{",
           end: "\\}\\}\\}",
-          keywords: {
-            "builtin-name":
-                "each in with if else unless bindattr action collection debugger log outlet template unbound view yield lookup"
-          },
-          contains: [
-            Mode(ref: '~contains~7~contains~0')
-          ]),
+          contains: [Mode(ref: '~contains~10~contains~0')]),
       Mode(
           className: "template-variable",
           begin: "\\{\\{",
           end: "\\}\\}",
-          keywords: {
-            "builtin-name":
-                "each in with if else unless bindattr action collection debugger log outlet template unbound view yield lookup"
-          },
-          contains: [
-            Mode(ref: '~contains~7~contains~0')
-          ])
+          contains: [Mode(ref: '~contains~10~contains~0')])
     ]);

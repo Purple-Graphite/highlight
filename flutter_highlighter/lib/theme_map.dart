@@ -46,6 +46,7 @@ import 'themes/github.dart';
 import 'themes/gml.dart';
 import 'themes/googlecode.dart';
 import 'themes/gradient-dark.dart';
+import 'themes/gradient-light.dart';
 import 'themes/grayscale.dart';
 import 'themes/gruvbox-dark.dart';
 import 'themes/gruvbox-light.dart';
@@ -58,11 +59,14 @@ import 'themes/isbl-editor-light.dart';
 import 'themes/kimbie.dark.dart';
 import 'themes/kimbie.light.dart';
 import 'themes/lightfair.dart';
+import 'themes/lioshi.dart';
 import 'themes/magula.dart';
 import 'themes/mono-blue.dart';
 import 'themes/monokai-sublime.dart';
 import 'themes/monokai.dart';
 import 'themes/night-owl.dart';
+import 'themes/nnfx-dark.dart';
+import 'themes/nnfx.dart';
 import 'themes/nord.dart';
 import 'themes/obsidian.dart';
 import 'themes/ocean.dart';
@@ -79,6 +83,9 @@ import 'themes/school-book.dart';
 import 'themes/shades-of-purple.dart';
 import 'themes/solarized-dark.dart';
 import 'themes/solarized-light.dart';
+import 'themes/srcery.dart';
+import 'themes/stackoverflow-dark.dart';
+import 'themes/stackoverflow-light.dart';
 import 'themes/sunburst.dart';
 import 'themes/tomorrow-night-blue.dart';
 import 'themes/tomorrow-night-bright.dart';
@@ -138,6 +145,7 @@ const themeMap = {
   'gml': gmlTheme,
   'googlecode': googlecodeTheme,
   'gradient-dark': gradientDarkTheme,
+  'gradient-light': gradientLightTheme,
   'grayscale': grayscaleTheme,
   'gruvbox-dark': gruvboxDarkTheme,
   'gruvbox-light': gruvboxLightTheme,
@@ -150,11 +158,14 @@ const themeMap = {
   'kimbie.dark': kimbieDarkTheme,
   'kimbie.light': kimbieLightTheme,
   'lightfair': lightfairTheme,
+  'lioshi': lioshiTheme,
   'magula': magulaTheme,
   'mono-blue': monoBlueTheme,
   'monokai-sublime': monokaiSublimeTheme,
   'monokai': monokaiTheme,
   'night-owl': nightOwlTheme,
+  'nnfx-dark': nnfxDarkTheme,
+  'nnfx': nnfxTheme,
   'nord': nordTheme,
   'obsidian': obsidianTheme,
   'ocean': oceanTheme,
@@ -171,6 +182,9 @@ const themeMap = {
   'shades-of-purple': shadesOfPurpleTheme,
   'solarized-dark': solarizedDarkTheme,
   'solarized-light': solarizedLightTheme,
+  'srcery': srceryTheme,
+  'stackoverflow-dark': stackoverflowDarkTheme,
+  'stackoverflow-light': stackoverflowLightTheme,
   'sunburst': sunburstTheme,
   'tomorrow-night-blue': tomorrowNightBlueTheme,
   'tomorrow-night-bright': tomorrowNightBrightTheme,

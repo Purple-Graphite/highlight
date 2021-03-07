@@ -22,18 +22,19 @@ final twig = Mode(
             Mode(ref: '~contains~1~contains~0~starts~contains~0~contains~0')
           ]),
     },
+    name: "Twig",
     aliases: ["craftcms"],
     case_insensitive: true,
     subLanguage: ["xml"],
     contains: [
-      Mode(className: "comment", begin: "\\{#", end: "#}", contains: [
+      Mode(className: "comment", begin: "\\{#", end: "#\\}", contains: [
         PHRASAL_WORDS_MODE,
         Mode(
             className: "doctag",
-            begin: "(?:TODO|FIXME|NOTE|BUG|XXX):",
+            begin: "(?:TODO|FIXME|NOTE|BUG|OPTIMIZE|HACK|XXX):",
             relevance: 0)
       ]),
-      Mode(className: "template-tag", begin: "\\{%", end: "%}", contains: [
+      Mode(className: "template-tag", begin: "\\{%", end: "%\\}", contains: [
         Mode(
             className: "name",
             begin: "\\w+",
@@ -52,7 +53,7 @@ final twig = Mode(
       Mode(
           className: "template-variable",
           begin: "\\{\\{",
-          end: "}}",
+          end: "\\}\\}",
           contains: [
             Mode(self: true),
             Mode(ref: '~contains~1~contains~0~starts~contains~0'),

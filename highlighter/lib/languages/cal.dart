@@ -28,7 +28,7 @@ final cal = Mode(
                   PHRASAL_WORDS_MODE,
                   Mode(
                       className: "doctag",
-                      begin: "(?:TODO|FIXME|NOTE|BUG|XXX):",
+                      begin: "(?:TODO|FIXME|NOTE|BUG|OPTIMIZE|HACK|XXX):",
                       relevance: 0)
                 ],
                 relevance: 0),
@@ -40,7 +40,7 @@ final cal = Mode(
                   PHRASAL_WORDS_MODE,
                   Mode(
                       className: "doctag",
-                      begin: "(?:TODO|FIXME|NOTE|BUG|XXX):",
+                      begin: "(?:TODO|FIXME|NOTE|BUG|OPTIMIZE|HACK|XXX):",
                       relevance: 0)
                 ],
                 relevance: 10)
@@ -52,6 +52,7 @@ final cal = Mode(
           end: "'",
           contains: [Mode(begin: "''")]),
     },
+    name: "C/AL",
     case_insensitive: true,
     keywords: {
       "keyword":

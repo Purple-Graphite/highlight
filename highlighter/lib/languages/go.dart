@@ -5,6 +5,7 @@ import '../src/common_modes.dart';
 
 final go = Mode(
     refs: {},
+    name: "Go",
     aliases: ["golang"],
     keywords: {
       "keyword":

@@ -5,6 +5,7 @@ import '../src/common_modes.dart';
 
 final gradle = Mode(
     refs: {},
+    name: "Gradle",
     case_insensitive: true,
     keywords: {
       "keyword":

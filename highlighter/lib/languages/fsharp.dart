@@ -5,6 +5,7 @@ import '../src/common_modes.dart';
 
 final fsharp = Mode(
     refs: {},
+    name: "F#",
     aliases: ["fs"],
     keywords:
         "abstract and as assert base begin class default delegate do done downcast downto elif else end exception extern false finally for fun function global if in inherit inline interface internal lazy let match member module mutable namespace new null of open or override private public rec return sig static struct then to true try type upcast use val void when while with yield",
@@ -17,13 +18,18 @@ final fsharp = Mode(
           end: "\"",
           contains: [Mode(begin: "\"\"")]),
       Mode(className: "string", begin: "\"\"\"", end: "\"\"\""),
-      Mode(className: "comment", begin: "\\(\\*", end: "\\*\\)", contains: [
-        PHRASAL_WORDS_MODE,
-        Mode(
-            className: "doctag",
-            begin: "(?:TODO|FIXME|NOTE|BUG|XXX):",
-            relevance: 0)
-      ]),
+      Mode(
+          className: "comment",
+          begin: "\\(\\*(\\s)",
+          end: "\\*\\)",
+          contains: [
+            Mode(self: true),
+            PHRASAL_WORDS_MODE,
+            Mode(
+                className: "doctag",
+                begin: "(?:TODO|FIXME|NOTE|BUG|OPTIMIZE|HACK|XXX):",
+                relevance: 0)
+          ]),
       Mode(
           className: "class",
           beginKeywords: "type",

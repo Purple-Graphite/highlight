@@ -5,6 +5,7 @@ import '../src/common_modes.dart';
 
 final n1Ql = Mode(
     refs: {},
+    name: "N1QL",
     case_insensitive: true,
     contains: [
       Mode(
@@ -24,14 +25,12 @@ final n1Ql = Mode(
                 className: "string",
                 begin: "'",
                 end: "'",
-                contains: [BACKSLASH_ESCAPE],
-                relevance: 0),
+                contains: [BACKSLASH_ESCAPE]),
             Mode(
                 className: "string",
                 begin: "\"",
                 end: "\"",
-                contains: [BACKSLASH_ESCAPE],
-                relevance: 0),
+                contains: [BACKSLASH_ESCAPE]),
             Mode(
                 className: "symbol",
                 begin: "`",

@@ -25,13 +25,14 @@ final lang1C = Mode(
         PHRASAL_WORDS_MODE,
         Mode(
             className: "doctag",
-            begin: "(?:TODO|FIXME|NOTE|BUG|XXX):",
+            begin: "(?:TODO|FIXME|NOTE|BUG|OPTIMIZE|HACK|XXX):",
             relevance: 0)
       ]),
     },
+    name: "1C:Enterprise",
     case_insensitive: true,
-    lexemes: "[A-Za-zА-Яа-яёЁ_][A-Za-zА-Яа-яёЁ_0-9]+",
     keywords: {
+      "\$pattern": "[A-Za-zА-Яа-яёЁ_][A-Za-zА-Яа-яёЁ_0-9]+",
       "keyword":
           "далее возврат вызватьисключение выполнить для если и из или иначе иначеесли исключение каждого конецесли конецпопытки конеццикла не новый перейти перем по пока попытка прервать продолжить тогда цикл экспорт ",
       "built_in":
@@ -43,55 +44,46 @@ final lang1C = Mode(
       "literal": "null истина ложь неопределено"
     },
     contains: [
-      Mode(
-          className: "meta",
-          lexemes: "[A-Za-zА-Яа-яёЁ_][A-Za-zА-Яа-яёЁ_0-9]+",
-          begin: "#|&",
-          end: "\$",
-          keywords: {
-            "meta-keyword":
-                "далее возврат вызватьисключение выполнить для если и из или иначе иначеесли исключение каждого конецесли конецпопытки конеццикла не новый перейти перем по пока попытка прервать продолжить тогда цикл экспорт загрузитьизфайла вебклиент вместо внешнеесоединение клиент конецобласти мобильноеприложениеклиент мобильноеприложениесервер наклиенте наклиентенасервере наклиентенасерверебезконтекста насервере насерверебезконтекста область перед после сервер толстыйклиентобычноеприложение толстыйклиентуправляемоеприложение тонкийклиент "
-          },
-          contains: [
-            Mode(ref: '~contains~0~contains~0')
-          ]),
-      Mode(
-          className: "function",
-          lexemes: "[A-Za-zА-Яа-яёЁ_][A-Za-zА-Яа-яёЁ_0-9]+",
-          variants: [
-            Mode(
-                begin: "процедура|функция",
-                end: "\\)",
-                keywords: "процедура функция"),
-            Mode(
-                begin: "конецпроцедуры|конецфункции",
-                keywords: "конецпроцедуры конецфункции")
-          ],
-          contains: [
-            Mode(begin: "\\(", end: "\\)", endsParent: true, contains: [
-              Mode(
-                  className: "params",
-                  lexemes: "[A-Za-zА-Яа-яёЁ_][A-Za-zА-Яа-яёЁ_0-9]+",
-                  begin: "[A-Za-zА-Яа-яёЁ_][A-Za-zА-Яа-яёЁ_0-9]+",
-                  end: ",",
-                  excludeEnd: true,
-                  endsWithParent: true,
-                  keywords: {
-                    "keyword": "знач",
-                    "literal": "null истина ложь неопределено"
-                  },
-                  contains: [
-                    Mode(ref: '~contains~1~contains~0~contains~0~contains~0'),
-                    Mode(ref: '~contains~1~contains~0~contains~0~contains~1'),
-                    Mode(ref: '~contains~1~contains~0~contains~0~contains~2')
-                  ]),
-              Mode(ref: '~contains~0~contains~0')
-            ]),
-            Mode(
-                className: "title",
-                begin: "[A-Za-zА-Яа-яёЁ_][A-Za-zА-Яа-яёЁ_0-9]+",
-                relevance: 0)
-          ]),
+      Mode(className: "meta", begin: "#|&", end: "\$", keywords: {
+        "\$pattern": "[A-Za-zА-Яа-яёЁ_][A-Za-zА-Яа-яёЁ_0-9]+",
+        "meta-keyword":
+            "далее возврат вызватьисключение выполнить для если и из или иначе иначеесли исключение каждого конецесли конецпопытки конеццикла не новый перейти перем по пока попытка прервать продолжить тогда цикл экспорт загрузитьизфайла вебклиент вместо внешнеесоединение клиент конецобласти мобильноеприложениеклиент мобильноеприложениесервер наклиенте наклиентенасервере наклиентенасерверебезконтекста насервере насерверебезконтекста область перед после сервер толстыйклиентобычноеприложение толстыйклиентуправляемоеприложение тонкийклиент "
+      }, contains: [
+        Mode(ref: '~contains~0~contains~0')
+      ]),
+      Mode(className: "function", variants: [
+        Mode(
+            begin: "процедура|функция",
+            end: "\\)",
+            keywords: "процедура функция"),
+        Mode(
+            begin: "конецпроцедуры|конецфункции",
+            keywords: "конецпроцедуры конецфункции")
+      ], contains: [
+        Mode(begin: "\\(", end: "\\)", endsParent: true, contains: [
+          Mode(
+              className: "params",
+              begin: "[A-Za-zА-Яа-яёЁ_][A-Za-zА-Яа-яёЁ_0-9]+",
+              end: ",",
+              excludeEnd: true,
+              endsWithParent: true,
+              keywords: {
+                "\$pattern": "[A-Za-zА-Яа-яёЁ_][A-Za-zА-Яа-яёЁ_0-9]+",
+                "keyword": "знач",
+                "literal": "null истина ложь неопределено"
+              },
+              contains: [
+                Mode(ref: '~contains~1~contains~0~contains~0~contains~0'),
+                Mode(ref: '~contains~1~contains~0~contains~0~contains~1'),
+                Mode(ref: '~contains~1~contains~0~contains~0~contains~2')
+              ]),
+          Mode(ref: '~contains~0~contains~0')
+        ]),
+        Mode(
+            className: "title",
+            begin: "[A-Za-zА-Яа-яёЁ_][A-Za-zА-Яа-яёЁ_0-9]+",
+            relevance: 0)
+      ]),
       Mode(ref: '~contains~0~contains~0'),
       Mode(className: "symbol", begin: "\\x7e", end: ";|:", excludeEnd: true),
       Mode(ref: '~contains~1~contains~0~contains~0~contains~0'),

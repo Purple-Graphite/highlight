@@ -5,6 +5,7 @@ import '../src/common_modes.dart';
 
 final rsl = Mode(
     refs: {},
+    name: "RenderMan RSL",
     keywords: {
       "keyword":
           "float color point normal vector matrix while for if do return else break extern continue",

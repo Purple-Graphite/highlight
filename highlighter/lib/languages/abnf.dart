@@ -5,16 +5,33 @@ import '../src/common_modes.dart';
 
 final abnf = Mode(
     refs: {},
+    name: "Augmented Backus-Naur Form",
     illegal: "[!@#\$^&',?+\\x7e`|:]",
-    keywords:
-        "ALPHA BIT CHAR CR CRLF CTL DIGIT DQUOTE HEXDIG HTAB LF LWSP OCTET SP VCHAR WSP",
+    keywords: [
+      "ALPHA",
+      "BIT",
+      "CHAR",
+      "CR",
+      "CRLF",
+      "CTL",
+      "DIGIT",
+      "DQUOTE",
+      "HEXDIG",
+      "HTAB",
+      "LF",
+      "LWSP",
+      "OCTET",
+      "SP",
+      "VCHAR",
+      "WSP"
+    ],
     contains: [
       Mode(className: "attribute", begin: "^[a-zA-Z][a-zA-Z0-9-]*(?=\\s*=)"),
       Mode(className: "comment", begin: ";", end: "\$", contains: [
         PHRASAL_WORDS_MODE,
         Mode(
             className: "doctag",
-            begin: "(?:TODO|FIXME|NOTE|BUG|XXX):",
+            begin: "(?:TODO|FIXME|NOTE|BUG|OPTIMIZE|HACK|XXX):",
             relevance: 0)
       ]),
       Mode(className: "symbol", begin: "%b[0-1]+(-[0-1]+|(\\.[0-1]+)+){0,1}"),

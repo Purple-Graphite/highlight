@@ -8,9 +8,10 @@ final xl = Mode(
       '~contains~2':
           Mode(className: "string", begin: "\"", end: "\"", illegal: "\\n"),
     },
+    name: "XL",
     aliases: ["tao"],
-    lexemes: "[a-zA-Z][a-zA-Z0-9_?]*",
     keywords: {
+      "\$pattern": "[a-zA-Z][a-zA-Z0-9_?]*",
       "keyword":
           "if then else do while until for loop import with is as where when by data constant integer real text name boolean symbol infix prefix postfix block tree",
       "literal": "true false nil",
@@ -34,6 +35,7 @@ final xl = Mode(
                 begin: "[a-zA-Z]\\w*",
                 relevance: 0,
                 starts: Mode(endsWithParent: true, keywords: {
+                  "\$pattern": "[a-zA-Z][a-zA-Z0-9_?]*",
                   "keyword":
                       "if then else do while until for loop import with is as where when by data constant integer real text name boolean symbol infix prefix postfix block tree",
                   "literal": "true false nil",
@@ -42,6 +44,7 @@ final xl = Mode(
                 }))
           ]),
       Mode(beginKeywords: "import", end: "\$", keywords: {
+        "\$pattern": "[a-zA-Z][a-zA-Z0-9_?]*",
         "keyword":
             "if then else do while until for loop import with is as where when by data constant integer real text name boolean symbol infix prefix postfix block tree",
         "literal": "true false nil",

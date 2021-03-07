@@ -5,8 +5,10 @@ import '../src/common_modes.dart';
 
 final sml = Mode(
     refs: {},
+    name: "SML (Standard ML)",
     aliases: ["ml"],
     keywords: {
+      "\$pattern": "[a-z_]\\w*!?",
       "keyword":
           "abstype and andalso as case datatype do else end eqtype exception fn fun functor handle if in include infix infixr let local nonfix of op open orelse raise rec sharing sig signature struct structure then type val with withtype where while",
       "built_in":
@@ -14,7 +16,6 @@ final sml = Mode(
       "literal": "true false NONE SOME LESS EQUAL GREATER nil"
     },
     illegal: "\\/\\/|>>",
-    lexemes: "[a-z_]\\w*!?",
     contains: [
       Mode(className: "literal", begin: "\\[(\\|\\|)?\\]|\\(\\)", relevance: 0),
       Mode(className: "comment", begin: "\\(\\*", end: "\\*\\)", contains: [
@@ -22,7 +23,7 @@ final sml = Mode(
         PHRASAL_WORDS_MODE,
         Mode(
             className: "doctag",
-            begin: "(?:TODO|FIXME|NOTE|BUG|XXX):",
+            begin: "(?:TODO|FIXME|NOTE|BUG|OPTIMIZE|HACK|XXX):",
             relevance: 0)
       ]),
       Mode(className: "symbol", begin: "'[A-Za-z_](?!')[\\w']*"),

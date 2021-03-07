@@ -5,10 +5,13 @@ import '../src/common_modes.dart';
 
 final step21 = Mode(
     refs: {},
+    name: "STEP Part 21",
     aliases: ["p21", "step", "stp"],
     case_insensitive: true,
-    lexemes: "[A-Z_][A-Z0-9_.]*",
-    keywords: {"keyword": "HEADER ENDSEC DATA"},
+    keywords: {
+      "\$pattern": "[A-Z_][A-Z0-9_.]*",
+      "keyword": "HEADER ENDSEC DATA"
+    },
     contains: [
       Mode(className: "meta", begin: "ISO-10303-21;", relevance: 10),
       Mode(className: "meta", begin: "END-ISO-10303-21;", relevance: 10),
@@ -18,7 +21,7 @@ final step21 = Mode(
         PHRASAL_WORDS_MODE,
         Mode(
             className: "doctag",
-            begin: "(?:TODO|FIXME|NOTE|BUG|XXX):",
+            begin: "(?:TODO|FIXME|NOTE|BUG|OPTIMIZE|HACK|XXX):",
             relevance: 0)
       ]),
       C_NUMBER_MODE,

@@ -12,15 +12,15 @@ final haskell = Mode(
           PHRASAL_WORDS_MODE,
           Mode(
               className: "doctag",
-              begin: "(?:TODO|FIXME|NOTE|BUG|XXX):",
+              begin: "(?:TODO|FIXME|NOTE|BUG|OPTIMIZE|HACK|XXX):",
               relevance: 0)
         ]),
-        Mode(className: "comment", begin: "{-", end: "-}", contains: [
+        Mode(className: "comment", begin: "\\{-", end: "-\\}", contains: [
           Mode(self: true),
           PHRASAL_WORDS_MODE,
           Mode(
               className: "doctag",
-              begin: "(?:TODO|FIXME|NOTE|BUG|XXX):",
+              begin: "(?:TODO|FIXME|NOTE|BUG|OPTIMIZE|HACK|XXX):",
               relevance: 0)
         ])
       ]),
@@ -31,7 +31,7 @@ final haskell = Mode(
       '~contains~0~contains~0~contains~1':
           Mode(className: "meta", begin: "^#", end: "\$"),
       '~contains~0~contains~0~contains~0':
-          Mode(className: "meta", begin: "{-#", end: "#-}"),
+          Mode(className: "meta", begin: "\\{-#", end: "#-\\}"),
       '~contains~0~contains~0':
           Mode(begin: "\\(", end: "\\)", illegal: "\"", contains: [
         Mode(ref: '~contains~0~contains~0~contains~0'),
@@ -41,6 +41,7 @@ final haskell = Mode(
         Mode(ref: '~contains~0~contains~0~contains~4')
       ]),
     },
+    name: "Haskell",
     aliases: ["hs"],
     keywords:
         "let in if then else case of where do module import hiding qualified type data newtype deriving class instance as default infix infixl infixr foreign export ccall stdcall cplusplus jvm dotnet safe unsafe family forall mdo proc rec",
@@ -82,7 +83,7 @@ final haskell = Mode(
             Mode(ref: '~contains~0~contains~0~contains~0'),
             Mode(ref: '~contains~2~contains~0'),
             Mode(ref: '~contains~0~contains~0'),
-            Mode(begin: "{", end: "}", contains: [
+            Mode(begin: "\\{", end: "\\}", contains: [
               Mode(ref: '~contains~0~contains~0~contains~0'),
               Mode(ref: '~contains~0~contains~0~contains~1'),
               Mode(ref: '~contains~0~contains~0~contains~2'),

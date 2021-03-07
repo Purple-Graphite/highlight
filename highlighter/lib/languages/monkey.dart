@@ -5,6 +5,7 @@ import '../src/common_modes.dart';
 
 final monkey = Mode(
     refs: {},
+    name: "Monkey",
     case_insensitive: true,
     keywords: {
       "keyword":
@@ -19,7 +20,7 @@ final monkey = Mode(
         PHRASAL_WORDS_MODE,
         Mode(
             className: "doctag",
-            begin: "(?:TODO|FIXME|NOTE|BUG|XXX):",
+            begin: "(?:TODO|FIXME|NOTE|BUG|OPTIMIZE|HACK|XXX):",
             relevance: 0)
       ]),
       Mode(
@@ -30,7 +31,7 @@ final monkey = Mode(
             PHRASAL_WORDS_MODE,
             Mode(
                 className: "doctag",
-                begin: "(?:TODO|FIXME|NOTE|BUG|XXX):",
+                begin: "(?:TODO|FIXME|NOTE|BUG|OPTIMIZE|HACK|XXX):",
                 relevance: 0)
           ],
           relevance: 0),

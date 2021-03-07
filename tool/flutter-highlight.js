@@ -5,7 +5,7 @@ import postcss from "postcss";
 import { NOTICE_COMMENT } from "./utils";
 
 const rootDir = "../vendor/highlight.js/src/styles";
-const destDir = "../flutter_highlight/lib/themes";
+const destDir = "../flutter_highlighter/lib/themes";
 
 /**
  * white, #fff, #ffffff, rgba(0,0,0,0) -> Flutter color
@@ -146,5 +146,5 @@ export function style() {
   });
 
   all[1] += "};";
-  fs.writeFileSync("../flutter_highlight/lib/theme_map.dart", all.join("\n"));
+  fs.writeFileSync("../flutter_highlighter/lib/theme_map.dart", all.join("\n"));
 }

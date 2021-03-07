@@ -5,21 +5,22 @@ import '../src/common_modes.dart';
 
 final aspectj = Mode(
     refs: {},
+    name: "AspectJ",
     keywords:
         "false synchronized int abstract float private char boolean static null if const for true while long throw strictfp finally protected import native final return void enum else extends implements break transient new catch instanceof byte super volatile case assert short package default double public try this switch continue throws privileged aspectOf adviceexecution proceed cflowbelow cflow initialization preinitialization staticinitialization withincode target within execution getWithinTypeName handler thisJoinPoint thisJoinPointStaticPart thisEnclosingJoinPointStaticPart declare parents warning error soft precedence thisAspectInstance",
     illegal: "<\\/|#",
     contains: [
       Mode(
           className: "comment",
-          begin: "/\\*\\*",
-          end: "\\*/",
+          begin: "\\/\\*\\*",
+          end: "\\*\\/",
           contains: [
             Mode(begin: "\\w+@", relevance: 0),
             Mode(className: "doctag", begin: "@[A-Za-z]+"),
             PHRASAL_WORDS_MODE,
             Mode(
                 className: "doctag",
-                begin: "(?:TODO|FIXME|NOTE|BUG|XXX):",
+                begin: "(?:TODO|FIXME|NOTE|BUG|OPTIMIZE|HACK|XXX):",
                 relevance: 0)
           ],
           relevance: 0),
@@ -89,7 +90,7 @@ final aspectj = Mode(
       Mode(
           className: "function",
           begin:
-              "\\w+ +\\w+(\\.)?\\w+\\s*\\([^\\)]*\\)\\s*((throws)[\\w\\s,]+)?[\\{;]",
+              "\\w+ +\\w+(\\.\\w+)?\\s*\\([^\\)]*\\)\\s*((throws)[\\w\\s,]+)?[\\{;]",
           returnBegin: true,
           end: "[{;=]",
           keywords:

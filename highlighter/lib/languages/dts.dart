@@ -36,7 +36,7 @@ final dts = Mode(
       ]),
       '~contains~0~contains~3': Mode(
           className: "class",
-          begin: "[a-zA-Z_][a-zA-Z\\d_@]*\\s{",
+          begin: "[a-zA-Z_][a-zA-Z\\d_@]*\\s\\{",
           end: "[{;=]",
           returnBegin: true,
           excludeEnd: true),
@@ -45,14 +45,15 @@ final dts = Mode(
       '~contains~0~contains~1':
           Mode(className: "meta-keyword", begin: "/[a-z][a-z\\d-]*/"),
       '~contains~0~contains~0':
-          Mode(className: "variable", begin: "\\&[a-z\\d_]*\\b"),
+          Mode(className: "variable", begin: "&[a-z\\d_]*\\b"),
     },
+    name: "Device Tree",
     keywords: "",
     contains: [
       Mode(
           className: "class",
-          begin: "/\\s*{",
-          end: "};",
+          begin: "/\\s*\\{",
+          end: "\\};",
           relevance: 10,
           contains: [
             Mode(ref: '~contains~0~contains~0'),

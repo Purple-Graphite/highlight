@@ -5,6 +5,7 @@ import '../src/common_modes.dart';
 
 final dockerfile = Mode(
     refs: {},
+    name: "Dockerfile",
     aliases: ["docker"],
     case_insensitive: true,
     keywords: "from maintainer expose env arg user onbuild stopsignal",

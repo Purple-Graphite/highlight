@@ -5,7 +5,7 @@ import * as fh from "./flutter-highlight";
 import * as gallery from "./gallery";
 
 export function watch(cb) {
-  gulp.watch("../flutter_highlight/lib/**/*", { ignoreInitial: false });
+  gulp.watch("../flutter_highlighter/lib/**/*", { ignoreInitial: false });
   gulp.watch(
     "../vendor/highlight.js/test/**/*",
     { ignoreInitial: false },

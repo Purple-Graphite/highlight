@@ -5,6 +5,7 @@ import '../src/common_modes.dart';
 
 final cos = Mode(
     refs: {},
+    name: "Caché Object Script",
     case_insensitive: true,
     aliases: ["cos", "cls"],
     keywords:
