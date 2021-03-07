@@ -5,6 +5,7 @@ import '../src/common_modes.dart';
 
 final haml = Mode(
     refs: {},
+    name: "HAML",
     case_insensitive: true,
     contains: [
       Mode(
@@ -20,7 +21,7 @@ final haml = Mode(
             PHRASAL_WORDS_MODE,
             Mode(
                 className: "doctag",
-                begin: "(?:TODO|FIXME|NOTE|BUG|XXX):",
+                begin: "(?:TODO|FIXME|NOTE|BUG|OPTIMIZE|HACK|XXX):",
                 relevance: 0)
           ],
           relevance: 0),
@@ -31,7 +32,7 @@ final haml = Mode(
         Mode(className: "selector-tag", begin: "\\w+"),
         Mode(className: "selector-id", begin: "#[\\w-]+"),
         Mode(className: "selector-class", begin: "\\.[\\w-]+"),
-        Mode(begin: "{\\s*", end: "\\s*}", contains: [
+        Mode(begin: "\\{\\s*", end: "\\s*\\}", contains: [
           Mode(
               begin: ":\\w+\\s*=>",
               end: ",\\s+",
@@ -59,5 +60,5 @@ final haml = Mode(
         ])
       ]),
       Mode(begin: "^\\s*[=\\x7e]\\s*"),
-      Mode(begin: "#{", starts: Mode(end: "}", subLanguage: ["ruby"]))
+      Mode(begin: "#\\{", starts: Mode(end: "\\}", subLanguage: ["ruby"]))
     ]);

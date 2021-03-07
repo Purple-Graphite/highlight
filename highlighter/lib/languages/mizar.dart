@@ -5,6 +5,7 @@ import '../src/common_modes.dart';
 
 final mizar = Mode(
     refs: {},
+    name: "Mizar",
     keywords:
         "environ vocabularies notations constructors definitions registrations theorems schemes requirements begin end definition registration cluster existence pred func defpred deffunc theorem proof let take assume then thus hence ex for st holds consider reconsider such that and in provided of as from be being by means equals implies iff redefine define now not or attr is mode suppose per cases set thesis contradiction scheme reserve struct correctness compatibility coherence symmetry assymetry reflexivity irreflexivity connectedness uniqueness commutativity idempotence involutiveness projectivity",
     contains: [
@@ -12,7 +13,7 @@ final mizar = Mode(
         PHRASAL_WORDS_MODE,
         Mode(
             className: "doctag",
-            begin: "(?:TODO|FIXME|NOTE|BUG|XXX):",
+            begin: "(?:TODO|FIXME|NOTE|BUG|OPTIMIZE|HACK|XXX):",
             relevance: 0)
       ])
     ]);

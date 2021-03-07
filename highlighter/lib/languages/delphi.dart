@@ -5,7 +5,7 @@ import '../src/common_modes.dart';
 
 final delphi = Mode(
     refs: {
-      '~contains~4~contains~1~contains~5': Mode(
+      '~contains~5~contains~1~contains~5': Mode(
           className: "comment",
           begin: "\\(\\*",
           end: "\\*\\)",
@@ -13,11 +13,11 @@ final delphi = Mode(
             PHRASAL_WORDS_MODE,
             Mode(
                 className: "doctag",
-                begin: "(?:TODO|FIXME|NOTE|BUG|XXX):",
+                begin: "(?:TODO|FIXME|NOTE|BUG|OPTIMIZE|HACK|XXX):",
                 relevance: 0)
           ],
           relevance: 10),
-      '~contains~4~contains~1~contains~4': Mode(
+      '~contains~5~contains~1~contains~4': Mode(
           className: "comment",
           begin: "\\{",
           end: "\\}",
@@ -25,11 +25,11 @@ final delphi = Mode(
             PHRASAL_WORDS_MODE,
             Mode(
                 className: "doctag",
-                begin: "(?:TODO|FIXME|NOTE|BUG|XXX):",
+                begin: "(?:TODO|FIXME|NOTE|BUG|OPTIMIZE|HACK|XXX):",
                 relevance: 0)
           ],
           relevance: 0),
-      '~contains~4~contains~1~contains~2': Mode(className: "meta", variants: [
+      '~contains~5~contains~1~contains~2': Mode(className: "meta", variants: [
         Mode(begin: "\\{\\\$", end: "\\}"),
         Mode(begin: "\\(\\*\\\$", end: "\\*\\)")
       ]),
@@ -40,6 +40,7 @@ final delphi = Mode(
           end: "'",
           contains: [Mode(begin: "''")]),
     },
+    name: "Delphi",
     aliases: [
       "dpr",
       "dfm",
@@ -58,6 +59,11 @@ final delphi = Mode(
       Mode(ref: '~contains~0'),
       Mode(ref: '~contains~1'),
       NUMBER_MODE,
+      Mode(className: "number", relevance: 0, variants: [
+        Mode(begin: "\\\$[0-9A-Fa-f]+"),
+        Mode(begin: "&[0-7]+"),
+        Mode(begin: "%[01]+")
+      ]),
       Mode(
           begin: "[a-zA-Z]\\w*\\s*=\\s*class\\s*\\(",
           returnBegin: true,
@@ -78,18 +84,18 @@ final delphi = Mode(
                 contains: [
                   Mode(ref: '~contains~0'),
                   Mode(ref: '~contains~1'),
-                  Mode(ref: '~contains~4~contains~1~contains~2'),
+                  Mode(ref: '~contains~5~contains~1~contains~2'),
                   C_LINE_COMMENT_MODE,
-                  Mode(ref: '~contains~4~contains~1~contains~4'),
-                  Mode(ref: '~contains~4~contains~1~contains~5')
+                  Mode(ref: '~contains~5~contains~1~contains~4'),
+                  Mode(ref: '~contains~5~contains~1~contains~5')
                 ]),
-            Mode(ref: '~contains~4~contains~1~contains~2'),
+            Mode(ref: '~contains~5~contains~1~contains~2'),
             C_LINE_COMMENT_MODE,
-            Mode(ref: '~contains~4~contains~1~contains~4'),
-            Mode(ref: '~contains~4~contains~1~contains~5')
+            Mode(ref: '~contains~5~contains~1~contains~4'),
+            Mode(ref: '~contains~5~contains~1~contains~5')
           ]),
-      Mode(ref: '~contains~4~contains~1~contains~2'),
+      Mode(ref: '~contains~5~contains~1~contains~2'),
       C_LINE_COMMENT_MODE,
-      Mode(ref: '~contains~4~contains~1~contains~4'),
-      Mode(ref: '~contains~4~contains~1~contains~5')
+      Mode(ref: '~contains~5~contains~1~contains~4'),
+      Mode(ref: '~contains~5~contains~1~contains~5')
     ]);

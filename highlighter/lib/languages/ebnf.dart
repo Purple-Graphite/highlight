@@ -10,16 +10,15 @@ final ebnf = Mode(
         PHRASAL_WORDS_MODE,
         Mode(
             className: "doctag",
-            begin: "(?:TODO|FIXME|NOTE|BUG|XXX):",
+            begin: "(?:TODO|FIXME|NOTE|BUG|OPTIMIZE|HACK|XXX):",
             relevance: 0)
       ]),
     },
+    name: "Extended Backus-Naur Form",
     illegal: "\\S",
     contains: [
       Mode(ref: '~contains~0'),
-      Mode(
-          className: "attribute",
-          begin: "^[ ]*[a-zA-Z][a-zA-Z-_]*([\\s-_]+[a-zA-Z][a-zA-Z]*)*"),
+      Mode(className: "attribute", begin: "^[ ]*[a-zA-Z]+([\\s_-]+[a-zA-Z]+)*"),
       Mode(begin: "=", end: "[.;]", contains: [
         Mode(ref: '~contains~0'),
         Mode(className: "meta", begin: "\\?.*\\?"),

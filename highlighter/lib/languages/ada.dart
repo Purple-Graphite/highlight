@@ -8,7 +8,7 @@ final ada = Mode(
       '~contains~6~contains~2': Mode(
           begin: "\\s+:\\s+",
           end: "\\s*(:=|;|\\)|=>|\$)",
-          illegal: "[]{}%#'\"",
+          illegal: "[]\\{\\}%#'\"",
           contains: [
             Mode(beginKeywords: "loop for declare others", endsParent: true),
             Mode(
@@ -26,10 +26,11 @@ final ada = Mode(
         PHRASAL_WORDS_MODE,
         Mode(
             className: "doctag",
-            begin: "(?:TODO|FIXME|NOTE|BUG|XXX):",
+            begin: "(?:TODO|FIXME|NOTE|BUG|OPTIMIZE|HACK|XXX):",
             relevance: 0)
       ]),
     },
+    name: "Ada",
     case_insensitive: true,
     keywords: {
       "keyword":
@@ -57,7 +58,7 @@ final ada = Mode(
           keywords: "package body",
           excludeBegin: true,
           excludeEnd: true,
-          illegal: "[]{}%#'\""),
+          illegal: "[]\\{\\}%#'\""),
       Mode(
           begin: "(\\b(with|overriding)\\s+)?\\b(function|procedure)\\s+",
           end: "(\\bis|\\bwith|\\brenames|\\)\\s*;)",
@@ -71,7 +72,7 @@ final ada = Mode(
                 end: "(\\(|\\s+|\$)",
                 excludeBegin: true,
                 excludeEnd: true,
-                illegal: "[]{}%#'\""),
+                illegal: "[]\\{\\}%#'\""),
             Mode(ref: '~contains~6~contains~2'),
             Mode(
                 className: "type",
@@ -81,7 +82,7 @@ final ada = Mode(
                 excludeBegin: true,
                 excludeEnd: true,
                 endsParent: true,
-                illegal: "[]{}%#'\"")
+                illegal: "[]\\{\\}%#'\"")
           ]),
       Mode(
           className: "type",
@@ -89,6 +90,6 @@ final ada = Mode(
           end: "\\s+",
           keywords: "type",
           excludeBegin: true,
-          illegal: "[]{}%#'\""),
+          illegal: "[]\\{\\}%#'\""),
       Mode(ref: '~contains~6~contains~2')
     ]);

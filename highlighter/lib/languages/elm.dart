@@ -12,15 +12,15 @@ final elm = Mode(
           PHRASAL_WORDS_MODE,
           Mode(
               className: "doctag",
-              begin: "(?:TODO|FIXME|NOTE|BUG|XXX):",
+              begin: "(?:TODO|FIXME|NOTE|BUG|OPTIMIZE|HACK|XXX):",
               relevance: 0)
         ]),
-        Mode(className: "comment", begin: "{-", end: "-}", contains: [
+        Mode(className: "comment", begin: "\\{-", end: "-\\}", contains: [
           Mode(self: true),
           PHRASAL_WORDS_MODE,
           Mode(
               className: "doctag",
-              begin: "(?:TODO|FIXME|NOTE|BUG|XXX):",
+              begin: "(?:TODO|FIXME|NOTE|BUG|OPTIMIZE|HACK|XXX):",
               relevance: 0)
         ])
       ]),
@@ -32,6 +32,7 @@ final elm = Mode(
         Mode(ref: '~contains~0~contains~0~contains~1')
       ]),
     },
+    name: "Elm",
     keywords:
         "let in if then else case of where module import exposing type alias as infix infixl infixr port effect command subscription",
     contains: [
@@ -56,7 +57,7 @@ final elm = Mode(
       Mode(begin: "type", end: "\$", keywords: "type alias", contains: [
         Mode(ref: '~contains~2~contains~0'),
         Mode(ref: '~contains~0~contains~0'),
-        Mode(begin: "{", end: "}", contains: [
+        Mode(begin: "\\{", end: "\\}", contains: [
           Mode(ref: '~contains~0~contains~0~contains~0'),
           Mode(ref: '~contains~0~contains~0~contains~1')
         ]),

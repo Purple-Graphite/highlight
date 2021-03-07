@@ -5,6 +5,7 @@ import '../src/common_modes.dart';
 
 final parser3 = Mode(
     refs: {},
+    name: "Parser3",
     subLanguage: ["xml"],
     relevance: 0,
     contains: [
@@ -12,26 +13,26 @@ final parser3 = Mode(
         PHRASAL_WORDS_MODE,
         Mode(
             className: "doctag",
-            begin: "(?:TODO|FIXME|NOTE|BUG|XXX):",
+            begin: "(?:TODO|FIXME|NOTE|BUG|OPTIMIZE|HACK|XXX):",
             relevance: 0)
       ]),
       Mode(
           className: "comment",
-          begin: "\\^rem{",
-          end: "}",
+          begin: "\\^rem\\{",
+          end: "\\}",
           contains: [
-            Mode(className: "comment", begin: "{", end: "}", contains: [
+            Mode(className: "comment", begin: "\\{", end: "\\}", contains: [
               Mode(self: true),
               PHRASAL_WORDS_MODE,
               Mode(
                   className: "doctag",
-                  begin: "(?:TODO|FIXME|NOTE|BUG|XXX):",
+                  begin: "(?:TODO|FIXME|NOTE|BUG|OPTIMIZE|HACK|XXX):",
                   relevance: 0)
             ]),
             PHRASAL_WORDS_MODE,
             Mode(
                 className: "doctag",
-                begin: "(?:TODO|FIXME|NOTE|BUG|XXX):",
+                begin: "(?:TODO|FIXME|NOTE|BUG|OPTIMIZE|HACK|XXX):",
                 relevance: 0)
           ],
           relevance: 10),
@@ -42,8 +43,8 @@ final parser3 = Mode(
       Mode(
           className: "title",
           begin: "@[\\w\\-]+\\[[\\w^;\\-]*\\](?:\\[[\\w^;\\-]*\\])?(?:.*)\$"),
-      Mode(className: "variable", begin: "\\\$\\{?[\\w\\-\\.\\:]+\\}?"),
-      Mode(className: "keyword", begin: "\\^[\\w\\-\\.\\:]+"),
+      Mode(className: "variable", begin: "\\\$\\{?[\\w\\-.:]+\\}?"),
+      Mode(className: "keyword", begin: "\\^[\\w\\-.:]+"),
       Mode(className: "number", begin: "\\^#[0-9a-fA-F]+"),
       C_NUMBER_MODE
     ]);

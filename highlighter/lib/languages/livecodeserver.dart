@@ -10,7 +10,7 @@ final livecodeserver = Mode(
           begin: "[a-zA-Z]\\w*",
           relevance: 0,
           variants: [
-            Mode(begin: "\\b_*rig[A-Z]+[A-Za-z0-9_\\-]*"),
+            Mode(begin: "\\b_*rig[A-Z][A-Za-z0-9_\\-]*"),
             Mode(begin: "\\b_[a-z0-9\\-]+")
           ]),
       '~contains~2~contains~1': Mode(
@@ -23,6 +23,7 @@ final livecodeserver = Mode(
           ],
           relevance: 0),
     },
+    name: "LiveCode",
     case_insensitive: false,
     keywords: {
       "keyword":
@@ -83,15 +84,15 @@ final livecodeserver = Mode(
         PHRASAL_WORDS_MODE,
         Mode(
             className: "doctag",
-            begin: "(?:TODO|FIXME|NOTE|BUG|XXX):",
+            begin: "(?:TODO|FIXME|NOTE|BUG|OPTIMIZE|HACK|XXX):",
             relevance: 0)
       ]),
       Mode(className: "comment", begin: "[^:]//", end: "\$", contains: [
         PHRASAL_WORDS_MODE,
         Mode(
             className: "doctag",
-            begin: "(?:TODO|FIXME|NOTE|BUG|XXX):",
+            begin: "(?:TODO|FIXME|NOTE|BUG|OPTIMIZE|HACK|XXX):",
             relevance: 0)
       ])
     ],
-    illegal: ";\$|^\\[|^=|&|{");
+    illegal: ";\$|^\\[|^=|&|\\{");

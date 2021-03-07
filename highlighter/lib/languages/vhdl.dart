@@ -5,6 +5,7 @@ import '../src/common_modes.dart';
 
 final vhdl = Mode(
     refs: {},
+    name: "VHDL",
     case_insensitive: true,
     keywords: {
       "keyword":
@@ -13,14 +14,14 @@ final vhdl = Mode(
           "boolean bit character integer time delay_length natural positive string bit_vector file_open_kind file_open_status std_logic std_logic_vector unsigned signed boolean_vector integer_vector std_ulogic std_ulogic_vector unresolved_unsigned u_unsigned unresolved_signed u_signed real_vector time_vector",
       "literal": "false true note warning error failure line text side width"
     },
-    illegal: "{",
+    illegal: "\\{",
     contains: [
       C_BLOCK_COMMENT_MODE,
       Mode(className: "comment", begin: "--", end: "\$", contains: [
         PHRASAL_WORDS_MODE,
         Mode(
             className: "doctag",
-            begin: "(?:TODO|FIXME|NOTE|BUG|XXX):",
+            begin: "(?:TODO|FIXME|NOTE|BUG|OPTIMIZE|HACK|XXX):",
             relevance: 0)
       ]),
       QUOTE_STRING_MODE,

@@ -9,7 +9,7 @@ final ini = Mode(
           className: "number",
           relevance: 0,
           variants: [
-            Mode(begin: "([\\+\\-]+)?[\\d]+_[\\d_]+"),
+            Mode(begin: "([+-]+)?[\\d]+_[\\d_]+"),
             Mode(begin: "\\b\\d+(\\.\\d+)?")
           ]),
       '~contains~2~starts~contains~1~contains~3':
@@ -25,7 +25,7 @@ final ini = Mode(
           className: "variable",
           variants: [
             Mode(begin: "\\\$[\\w\\d\"][\\w\\d_]*"),
-            Mode(begin: "\\\$\\{(.*?)}")
+            Mode(begin: "\\\$\\{(.*?)\\}")
           ]),
       '~contains~2~starts~contains~1~contains~1':
           Mode(className: "literal", begin: "\\bon|off|true|false|yes|no\\b"),
@@ -33,13 +33,14 @@ final ini = Mode(
         PHRASAL_WORDS_MODE,
         Mode(
             className: "doctag",
-            begin: "(?:TODO|FIXME|NOTE|BUG|XXX):",
+            begin: "(?:TODO|FIXME|NOTE|BUG|OPTIMIZE|HACK|XXX):",
             relevance: 0)
       ], variants: [
         Mode(begin: ";", end: "\$"),
         Mode(begin: "#", end: "\$")
       ]),
     },
+    name: "TOML, also INI",
     aliases: ["toml"],
     case_insensitive: true,
     illegal: "\\S",
@@ -47,7 +48,8 @@ final ini = Mode(
       Mode(ref: '~contains~0'),
       Mode(className: "section", begin: "\\[+", end: "\\]+"),
       Mode(
-          begin: "^[a-z0-9\\[\\]_\\.-]+(?=\\s*=\\s*)",
+          begin:
+              "([A-Za-z0-9_-]+|\"(\\\\\"|[^\"])*\"|'[^']*')(\\s*\\.\\s*([A-Za-z0-9_-]+|\"(\\\\\"|[^\"])*\"|'[^']*'))*(?=\\s*=\\s*[^#\\s])",
           className: "attr",
           starts: Mode(end: "\$", contains: [
             Mode(ref: '~contains~0'),

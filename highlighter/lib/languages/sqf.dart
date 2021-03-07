@@ -12,6 +12,7 @@ final sqf = Mode(
           end: "\"",
           contains: [Mode(begin: "\"\"", relevance: 0)]),
     },
+    name: "SQF",
     aliases: ["sqf"],
     case_insensitive: true,
     keywords: {
@@ -26,7 +27,7 @@ final sqf = Mode(
       C_LINE_COMMENT_MODE,
       C_BLOCK_COMMENT_MODE,
       NUMBER_MODE,
-      Mode(className: "variable", begin: "\\b_+[a-zA-Z_]\\w*"),
+      Mode(className: "variable", begin: "\\b_+[a-zA-Z]\\w*"),
       Mode(className: "title", begin: "[a-zA-Z][a-zA-Z0-9]+_fnc_\\w*"),
       Mode(className: "string", variants: [
         Mode(ref: '~contains~5~variants~0'),

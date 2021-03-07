@@ -14,7 +14,7 @@ final vue = Mode(refs: {}, subLanguage: [
         PHRASAL_WORDS_MODE,
         Mode(
             className: "doctag",
-            begin: "(?:TODO|FIXME|NOTE|BUG|XXX):",
+            begin: "(?:TODO|FIXME|NOTE|BUG|OPTIMIZE|HACK|XXX):",
             relevance: 0)
       ],
       relevance: 10),
@@ -25,25 +25,27 @@ final vue = Mode(refs: {}, subLanguage: [
       excludeBegin: true,
       excludeEnd: true),
   Mode(
-      begin: "^(\\s*)(<script lang=[\"']ts[\"']>)",
+      begin: "^(?:\\s*)(?:<script\\s+lang=([\"'])ts\\1>)",
       end: "^(\\s*)(<\\/script>)",
       subLanguage: ["typescript"],
       excludeBegin: true,
       excludeEnd: true),
   Mode(
-      begin: "^(\\s*)(<style(\\sscoped)?>)",
+      begin: "^(\\s*)(<style(\\s+scoped)?>)",
       end: "^(\\s*)(<\\/style>)",
       subLanguage: ["css"],
       excludeBegin: true,
       excludeEnd: true),
   Mode(
-      begin: "^(\\s*)(<style lang=[\"'](scss|sass)[\"'](\\sscoped)?>)",
+      begin:
+          "^(?:\\s*)(?:<style(?:\\s+scoped)?\\s+lang=([\"'])(?:s[ca]ss)\\1(?:\\s+scoped)?>)",
       end: "^(\\s*)(<\\/style>)",
       subLanguage: ["scss"],
       excludeBegin: true,
       excludeEnd: true),
   Mode(
-      begin: "^(\\s*)(<style lang=[\"']stylus[\"'](\\sscoped)?>)",
+      begin:
+          "^(?:\\s*)(?:<style(?:\\s+scoped)?\\s+lang=([\"'])stylus\\1(?:\\s+scoped)?>)",
       end: "^(\\s*)(<\\/style>)",
       subLanguage: ["stylus"],
       excludeBegin: true,

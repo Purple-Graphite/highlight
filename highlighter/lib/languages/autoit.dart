@@ -23,7 +23,7 @@ final autoit = Mode(
               PHRASAL_WORDS_MODE,
               Mode(
                   className: "doctag",
-                  begin: "(?:TODO|FIXME|NOTE|BUG|XXX):",
+                  begin: "(?:TODO|FIXME|NOTE|BUG|OPTIMIZE|HACK|XXX):",
                   relevance: 0)
             ],
             relevance: 0),
@@ -31,7 +31,7 @@ final autoit = Mode(
           PHRASAL_WORDS_MODE,
           Mode(
               className: "doctag",
-              begin: "(?:TODO|FIXME|NOTE|BUG|XXX):",
+              begin: "(?:TODO|FIXME|NOTE|BUG|OPTIMIZE|HACK|XXX):",
               relevance: 0)
         ]),
         Mode(
@@ -42,11 +42,12 @@ final autoit = Mode(
               PHRASAL_WORDS_MODE,
               Mode(
                   className: "doctag",
-                  begin: "(?:TODO|FIXME|NOTE|BUG|XXX):",
+                  begin: "(?:TODO|FIXME|NOTE|BUG|OPTIMIZE|HACK|XXX):",
                   relevance: 0)
             ])
       ]),
     },
+    name: "AutoIt",
     case_insensitive: true,
     illegal: "\\/\\*",
     keywords: {

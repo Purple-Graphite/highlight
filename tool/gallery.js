@@ -24,5 +24,5 @@ export function example() {
     code += `'${langName}':'${content}',`;
   });
   code += "};";
-  fs.writeFileSync("../flutter_highlight/example/lib/example_map.dart", code);
+  fs.writeFileSync("../flutter_highlighter/example/lib/example_map.dart", code);
 }

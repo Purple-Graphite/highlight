@@ -5,14 +5,26 @@ import '../src/common_modes.dart';
 
 final apache = Mode(
     refs: {
-      '~contains~2~starts~contains~1~contains~1':
-          Mode(className: "number", begin: "[\\\$%]\\d+"),
+      '~contains~1~contains~0': Mode(
+          className: "number",
+          begin: "\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}(:\\d{1,5})?"),
     },
+    name: "Apache config",
     aliases: ["apacheconf"],
     case_insensitive: true,
     contains: [
       HASH_COMMENT_MODE,
-      Mode(className: "section", begin: "</?", end: ">"),
+      Mode(className: "section", begin: "<\\/?", end: ">", contains: [
+        Mode(ref: '~contains~1~contains~0'),
+        Mode(className: "number", begin: ":\\d{1,5}"),
+        Mode(
+            className: "string",
+            begin: "\"",
+            end: "\"",
+            illegal: "\\n",
+            contains: [BACKSLASH_ESCAPE],
+            relevance: 0)
+      ]),
       Mode(
           className: "attribute",
           begin: "\\w+",
@@ -22,7 +34,7 @@ final apache = Mode(
                 "order deny allow setenv rewriterule rewriteengine rewritecond documentroot sethandler errordocument loadmodule options header listen serverroot servername"
           },
           starts: Mode(end: "\$", relevance: 0, keywords: {
-            "literal": "on off all"
+            "literal": "on off all deny allow"
           }, contains: [
             Mode(className: "meta", begin: "\\s\\[", end: "\\]\$"),
             Mode(
@@ -31,9 +43,10 @@ final apache = Mode(
                 end: "\\}",
                 contains: [
                   Mode(self: true),
-                  Mode(ref: '~contains~2~starts~contains~1~contains~1')
+                  Mode(className: "number", begin: "[\$%]\\d+")
                 ]),
-            Mode(ref: '~contains~2~starts~contains~1~contains~1'),
+            Mode(ref: '~contains~1~contains~0'),
+            Mode(className: "number", begin: "\\d+"),
             QUOTE_STRING_MODE
           ]))
     ],

@@ -20,6 +20,8 @@ import 'bash.dart';
 import 'basic.dart';
 import 'bnf.dart';
 import 'brainfuck.dart';
+import 'c-like.dart';
+import 'c.dart';
 import 'cal.dart';
 import 'capnproto.dart';
 import 'ceylon.dart';
@@ -33,7 +35,7 @@ import 'cos.dart';
 import 'cpp.dart';
 import 'crmsh.dart';
 import 'crystal.dart';
-import 'cs.dart';
+import 'csharp.dart';
 import 'csp.dart';
 import 'css.dart';
 import 'd.dart';
@@ -88,6 +90,7 @@ import 'julia-repl.dart';
 import 'julia.dart';
 import 'kotlin.dart';
 import 'lasso.dart';
+import 'latex.dart';
 import 'ldif.dart';
 import 'leaf.dart';
 import 'less.dart';
@@ -111,8 +114,9 @@ import 'monkey.dart';
 import 'moonscript.dart';
 import 'n1ql.dart';
 import 'nginx.dart';
-import 'nimrod.dart';
+import 'nim.dart';
 import 'nix.dart';
+import 'node-repl.dart';
 import 'nsis.dart';
 import 'objectivec.dart';
 import 'ocaml.dart';
@@ -122,6 +126,7 @@ import 'parser3.dart';
 import 'perl.dart';
 import 'pf.dart';
 import 'pgsql.dart';
+import 'php-template.dart';
 import 'php.dart';
 import 'plaintext.dart';
 import 'pony.dart';
@@ -133,6 +138,7 @@ import 'properties.dart';
 import 'protobuf.dart';
 import 'puppet.dart';
 import 'purebasic.dart';
+import 'python-repl.dart';
 import 'python.dart';
 import 'q.dart';
 import 'qml.dart';
@@ -156,6 +162,7 @@ import 'smalltalk.dart';
 import 'sml.dart';
 import 'sqf.dart';
 import 'sql.dart';
+import 'sql_more.dart';
 import 'stan.dart';
 import 'stata.dart';
 import 'step21.dart';
@@ -165,7 +172,6 @@ import 'swift.dart';
 import 'taggerscript.dart';
 import 'tap.dart';
 import 'tcl.dart';
-import 'tex.dart';
 import 'thrift.dart';
 import 'tp.dart';
 import 'twig.dart';
@@ -217,6 +223,8 @@ final builtinLanguages = {
   'basic': basic,
   'bnf': bnf,
   'brainfuck': brainfuck,
+  'c-like': cLike,
+  'c': c,
   'cal': cal,
   'capnproto': capnproto,
   'ceylon': ceylon,
@@ -230,7 +238,7 @@ final builtinLanguages = {
   'cpp': cpp,
   'crmsh': crmsh,
   'crystal': crystal,
-  'cs': cs,
+  'csharp': csharp,
   'csp': csp,
   'css': css,
   'd': d,
@@ -285,6 +293,7 @@ final builtinLanguages = {
   'julia': julia,
   'kotlin': kotlin,
   'lasso': lasso,
+  'latex': latex,
   'ldif': ldif,
   'leaf': leaf,
   'less': less,
@@ -308,8 +317,9 @@ final builtinLanguages = {
   'moonscript': moonscript,
   'n1ql': n1Ql,
   'nginx': nginx,
-  'nimrod': nimrod,
+  'nim': nim,
   'nix': nix,
+  'node-repl': nodeRepl,
   'nsis': nsis,
   'objectivec': objectivec,
   'ocaml': ocaml,
@@ -319,6 +329,7 @@ final builtinLanguages = {
   'perl': perl,
   'pf': pf,
   'pgsql': pgsql,
+  'php-template': phpTemplate,
   'php': php,
   'plaintext': plaintext,
   'pony': pony,
@@ -330,6 +341,7 @@ final builtinLanguages = {
   'protobuf': protobuf,
   'puppet': puppet,
   'purebasic': purebasic,
+  'python-repl': pythonRepl,
   'python': python,
   'q': q,
   'qml': qml,
@@ -353,6 +365,7 @@ final builtinLanguages = {
   'sml': sml,
   'sqf': sqf,
   'sql': sql,
+  'sql_more': sqlMore,
   'stan': stan,
   'stata': stata,
   'step21': step21,
@@ -362,7 +375,6 @@ final builtinLanguages = {
   'taggerscript': taggerscript,
   'tap': tap,
   'tcl': tcl,
-  'tex': tex,
   'thrift': thrift,
   'tp': tp,
   'twig': twig,

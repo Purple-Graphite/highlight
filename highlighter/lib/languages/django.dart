@@ -14,29 +14,30 @@ final django = Mode(
         APOS_STRING_MODE
       ]),
     },
+    name: "Django",
     aliases: ["jinja"],
     case_insensitive: true,
     subLanguage: ["xml"],
     contains: [
       Mode(
           className: "comment",
-          begin: "\\{%\\s*comment\\s*%}",
-          end: "\\{%\\s*endcomment\\s*%}",
+          begin: "\\{%\\s*comment\\s*%\\}",
+          end: "\\{%\\s*endcomment\\s*%\\}",
           contains: [
             PHRASAL_WORDS_MODE,
             Mode(
                 className: "doctag",
-                begin: "(?:TODO|FIXME|NOTE|BUG|XXX):",
+                begin: "(?:TODO|FIXME|NOTE|BUG|OPTIMIZE|HACK|XXX):",
                 relevance: 0)
           ]),
-      Mode(className: "comment", begin: "\\{#", end: "#}", contains: [
+      Mode(className: "comment", begin: "\\{#", end: "#\\}", contains: [
         PHRASAL_WORDS_MODE,
         Mode(
             className: "doctag",
-            begin: "(?:TODO|FIXME|NOTE|BUG|XXX):",
+            begin: "(?:TODO|FIXME|NOTE|BUG|OPTIMIZE|HACK|XXX):",
             relevance: 0)
       ]),
-      Mode(className: "template-tag", begin: "\\{%", end: "%}", contains: [
+      Mode(className: "template-tag", begin: "\\{%", end: "%\\}", contains: [
         Mode(
             className: "name",
             begin: "\\w+",
@@ -55,6 +56,6 @@ final django = Mode(
       Mode(
           className: "template-variable",
           begin: "\\{\\{",
-          end: "}}",
+          end: "\\}\\}",
           contains: [Mode(ref: '~contains~2~contains~0~starts~contains~0')])
     ]);

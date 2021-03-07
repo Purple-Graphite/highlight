@@ -7,6 +7,7 @@ final autohotkey = Mode(
     refs: {
       '~contains~0': Mode(begin: "`[\\s\\S]"),
     },
+    name: "AutoHotkey",
     case_insensitive: true,
     aliases: ["ahk"],
     keywords: {
@@ -31,7 +32,7 @@ final autohotkey = Mode(
             PHRASAL_WORDS_MODE,
             Mode(
                 className: "doctag",
-                begin: "(?:TODO|FIXME|NOTE|BUG|XXX):",
+                begin: "(?:TODO|FIXME|NOTE|BUG|OPTIMIZE|HACK|XXX):",
                 relevance: 0)
           ],
           relevance: 0),

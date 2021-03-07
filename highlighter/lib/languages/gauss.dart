@@ -79,10 +79,11 @@ final gauss = Mode(
         PHRASAL_WORDS_MODE,
         Mode(
             className: "doctag",
-            begin: "(?:TODO|FIXME|NOTE|BUG|XXX):",
+            begin: "(?:TODO|FIXME|NOTE|BUG|OPTIMIZE|HACK|XXX):",
             relevance: 0)
       ]),
     },
+    name: "GAUSS",
     aliases: ["gss"],
     case_insensitive: true,
     keywords: {

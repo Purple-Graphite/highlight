@@ -8,6 +8,7 @@ final smalltalk = Mode(
       '~contains~6': Mode(className: "string", begin: "\\\$.{1}"),
       '~contains~5': Mode(className: "symbol", begin: "#[a-zA-Z_]\\w*"),
     },
+    name: "Smalltalk",
     aliases: ["st"],
     keywords: "self super nil true false thisContext",
     contains: [
@@ -15,7 +16,7 @@ final smalltalk = Mode(
         PHRASAL_WORDS_MODE,
         Mode(
             className: "doctag",
-            begin: "(?:TODO|FIXME|NOTE|BUG|XXX):",
+            begin: "(?:TODO|FIXME|NOTE|BUG|OPTIMIZE|HACK|XXX):",
             relevance: 0)
       ]),
       APOS_STRING_MODE,
@@ -30,7 +31,7 @@ final smalltalk = Mode(
           end: "\\|",
           illegal: "\\S",
           contains: [Mode(begin: "(\\|[ ]*)?[a-z][a-zA-Z0-9_]*")]),
-      Mode(begin: "\\#\\(", end: "\\)", contains: [
+      Mode(begin: "#\\(", end: "\\)", contains: [
         APOS_STRING_MODE,
         Mode(ref: '~contains~6'),
         C_NUMBER_MODE,
